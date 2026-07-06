@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="海津真史の自己紹介ページ。GA technologies（RENOSY CRM）担当、経歴・趣味・作成したAIボットを紹介。">
+  <title>海津真史 | 自己紹介</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --color-primary: #2563eb;
+      --color-primary-dark: #1d4ed8;
+      --color-primary-light: #dbeafe;
+      --color-accent-green: #059669;
+      --color-accent-green-bg: #ecfdf5;
+      --color-text: #1f2937;
+      --color-text-muted: #6b7280;
+      --color-bg: #f0f4f8;
+      --color-surface: #ffffff;
+      --color-border: #e5e7eb;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(37, 99, 235, 0.08);
+      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --max-width: 880px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--color-bg);
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(5, 150, 105, 0.05) 0%, transparent 50%);
+      color: var(--color-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ヘッダー・ナビ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .header-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--color-primary);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+    }
+
+    /* メインコンテナ */
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    /* セクション共通 */
+    .section {
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      padding: 2rem;
+      margin-bottom: 1.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--color-primary);
+      color: var(--color-text);
+    }
+
+    /* プロフィールヒーロー */
+    .profile-hero {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .profile-photo-wrap {
+      position: relative;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--color-primary);
+      box-shadow: var(--shadow-lg);
+      display: block;
+    }
+
+    .profile-name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .profile-age {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1rem;
+    }
+
+    .profile-meta {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+    }
+
+    .profile-meta li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .profile-meta i {
+      color: var(--color-primary);
+      margin-top: 0.2rem;
+      width: 1rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    /* タイムライン */
+    .timeline {
+      position: relative;
+      margin-left: 0.5rem;
+      padding-left: 1.75rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-light));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 1.75rem;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.85rem;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      border: 2px solid var(--color-surface);
+      box-shadow: 0 0 0 2px var(--color-primary-light);
+    }
+
+    .timeline-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.25rem;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    .business-card-img {
+      max-width: 100%;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      margin-top: 1rem;
+    }
+
+    /* 地元セクション */
+    .feature-hero-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 1.25rem;
+    }
+
+    .intro-text {
+      margin: 0 0 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-card {
+      background: var(--color-accent-green-bg);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      border-left: 4px solid var(--color-accent-green);
+    }
+
+    .info-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #047857;
+      margin: 0 0 0.5rem;
+    }
+
+    .info-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--color-text);
+    }
+
+    .crayfish-wrap {
+      text-align: center;
+    }
+
+    .crayfish-img {
+      width: 75%;
+      max-width: 480px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+    }
+
+    .caption {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* 趣味カード */
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hobby-card {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.04) 0%, rgba(37, 99, 235, 0.01) 100%);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hobby-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .emoji {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .hobby-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .hobby-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+
+    .hobby-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      margin-top: 0.75rem;
+      border-radius: 6px;
+    }
+
+    /* AIボット */
+    .section-intro {
+      margin: 0 0 1.25rem;
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    .bot-card {
+      background: #f9fafb;
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--color-primary);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .bot-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .bot-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .bot-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .bot-card > p {
+      margin: 0 0 0.75rem;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+
+    .bot-card img {
+      display: block;
+      max-width: 100%;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+    }
+
+    .ai-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: #f9fafb;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .ai-note img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .ai-note .note-title {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .ai-note .note-body {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* フッター */
+    .final-message {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .final-message h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: 0 0 0.5rem;
+    }
+
+    .final-message p {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--color-text-muted);
+    }
+
+    /* トップへ戻る */
+    .back-to-top {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+      z-index: 100;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.08);
+      background: var(--color-primary-dark);
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      .profile-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.25rem;
+      }
+
+      .profile-photo-wrap {
+        display: flex;
+        justify-content: center;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .profile-name {
+        font-size: 1.6rem;
+      }
+
+      .profile-meta li {
+        justify-content: center;
+      }
+
+      .tags {
+        justify-content: center;
+      }
+
+      .section {
+        padding: 1.5rem;
+      }
+
+      .info-grid,
+      .hobby-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-hero-img {
+        height: 180px;
+      }
+
+      .crayfish-img {
+        width: 100%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .header-inner {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="header-name">海津真史</span>
+      <nav class="nav-links" aria-label="ページ内ナビゲーション">
+        <a href="#career">経歴</a>
+        <a href="#hometown">地元</a>
+        <a href="#hobbies">趣味</a>
+        <a href="#bots">AIボット</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- プロフィール -->
+    <section class="section" id="profile">
+      <div class="profile-hero">
+        <div class="profile-photo-wrap">
+          <img src="https://page.genspark.site/v1/base64_upload/422609cfccf3a2c444ab4af293cf7885" alt="プロフィール写真" class="profile-img" width="180" height="180">
+        </div>
+        <div>
+          <h1 class="profile-name">海津真史</h1>
+          <p class="profile-age">1995年10月5日生（29歳）</p>
+          <ul class="profile-meta">
+            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>東京都八王子市出身</span></li>
+            <li><i class="fas fa-briefcase" aria-hidden="true"></i><span>現在: GA technologies（RENOSYブランド CRM領域担当）</span></li>
+          </ul>
+          <div class="tags">
+            <span class="tag">CRM</span>
+            <span class="tag">マーケティング</span>
+            <span class="tag">データ分析</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 経歴 -->
+    <section class="section" id="career">
+      <h2 class="section-title">📝 経歴</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>1社目: 金融業界</h3>
+          <p>営業から社会人スタート</p>
+        </div>
+        <div class="timeline-item">
+          <h3>2社目: 通販会社</h3>
+          <p>広告領域を担当</p>
+        </div>
+        <div class="timeline-item">
+          <h3>3社目: 女性向けインテリア雑貨の会社</h3>
+          <p>EC中心にCRM領域を担当</p>
+        </div>
+        <div class="timeline-item">
+          <h3>現在: GA technologies</h3>
+          <p>不動産投資サービスRENOSY運営。「不動産での資産形成を、あたりまえにする。」を事業ビジョンとして掲げるAI不動産投資サービスで、顧客体験をより良くするため日々取り組んでいます🔥</p>
+          <img src="https://page.genspark.site/v1/base64_upload/e35d1715de69bbd46ab29b734e03f05e" alt="GA technologies 名刺" class="business-card-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- 出身地 -->
+    <section class="section" id="hometown">
+      <h2 class="section-title">🏞️ 地元：八王子の魅力</h2>
+      <img src="https://www.city.hachioji.tokyo.jp/citypromotion/photo/autumn/p020966_d/img/001.jpg" alt="高尾山の風景" class="feature-hero-img">
+      <p class="intro-text">東京都の八王子市で育ちました！自然豊かな場所で、子供の頃はザリガニ釣りや虫取りをして遊んでいました 🦐</p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>🗻 高尾山の魅力</h3>
+          <p>標高599mの高尾山は年間約260万人が訪れる人気スポット。ミシュラン・グリーンガイドで三つ星を獲得しており、豊かな自然と美しい景観が楽しめます。</p>
+        </div>
+        <div class="info-card">
+          <h3>🌳 自然の宝庫</h3>
+          <p>八王子は都心から約40kmに位置しながら、豊かな自然環境が魅力。多摩丘陵や浅川が流れ、四季折々の自然を身近に感じられます。</p>
+        </div>
+      </div>
+      <div class="crayfish-wrap">
+        <img src="https://stat.ameba.jp/user_images/20191016/05/yaskuma/93/7a/j/o1080081014615688446.jpg" alt="八王子 ザリガニ釣り" class="crayfish-img">
+        <p class="caption">子供の頃よく行ったザリガニ釣りスポット</p>
+      </div>
+    </section>
+
+    <!-- 趣味 -->
+    <section class="section" id="hobbies">
+      <h2 class="section-title">🎯 趣味・特技</h2>
+      <div class="hobby-grid">
+        <div class="hobby-card">
+          <div class="hobby-header">
+            <span class="emoji" aria-hidden="true">💪</span>
+            <h3>筋トレ</h3>
+          </div>
+          <p>週5日ほどジムに通ってゆるく続けてます。</p>
+          <img src="https://t.pimg.jp/062/752/673/1/62752673.jpg" alt="筋トレイラスト" loading="lazy">
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-header">
+            <span class="emoji" aria-hidden="true">🎵</span>
+            <h3>最近ハマったもの</h3>
+          </div>
+          <p>HANAという音楽グループで、朝4時まで関連番組を見るくらいにはハマりました。</p>
+          <img src="https://page.genspark.site/v1/base64_upload/64673d50fb431c7fb82cd2eadbb6dfcf" alt="HANAグループ" loading="lazy">
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-header">
+            <span class="emoji" aria-hidden="true">📚</span>
+            <h3>漫画・アニメ</h3>
+          </div>
+          <p>最近は「推しの子」がとても良かったです。</p>
+          <img src="https://contents.oricon.co.jp/upimg/news/2253000/2252806/20221013_000418_p_o_32707851.jpg" alt="推しの子アニメイメージ" loading="lazy">
+        </div>
+        <div class="hobby-card">
+          <div class="hobby-header">
+            <span class="emoji" aria-hidden="true">🤖</span>
+            <h3>生成AI</h3>
+          </div>
+          <p>情報のインプットが追い付かないくらいで色々試すのが楽しいです。</p>
+          <img src="https://tarosite.net/wp-content/uploads/2024/04/GLzuX5pbwAAwIR8.jpg" alt="生成AIイラスト" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- AIボット -->
+    <section class="section" id="bots">
+      <h2 class="section-title">🤖 作成したAIボット</h2>
+      <p class="section-intro">遊び感覚で作成した公開できる範囲のAIボットなど紹介。興味があればぜひ使ってみてください！</p>
+
+      <div class="bot-card">
+        <div class="bot-header">
+          <span class="emoji" aria-hidden="true">✈️</span>
+          <h3>予約リマインドくん🤖</h3>
+        </div>
+        <p>予約の取り消し忘れ対策として、予約に合わせて自動リマインドする君をLINEで実装しました！</p>
+        <img src="https://page.genspark.site/v1/base64_upload/3eade97eb24b12b7dca1e2bf7e209885" alt="予約リマインドくん画面" loading="lazy">
+      </div>
+
+      <div class="bot-card">
+        <div class="bot-header">
+          <span class="emoji" aria-hidden="true">😺</span>
+          <h3>今日もがんばるぞLINE🐱</h3>
+        </div>
+        <p>毎朝決まった時間にAIが作った元気メッセージを届けるLINEアカウントの実装をしました！</p>
+        <img src="https://page.genspark.site/v1/base64_upload/b6a4e10d055303d0f2c007bc825c679d" alt="今日もがんばるぞLINE画面" loading="lazy">
+      </div>
+
+      <div class="ai-note">
+        <img src="https://as2.ftcdn.net/jpg/05/09/27/93/1000_F_509279375_vRYnOplmd1pT7rYhs0ouqTYNAs6aGPWn.jpg" alt="AIチャットボット" loading="lazy">
+        <div>
+          <span class="note-title">この自己紹介ページもAIで作成しました！</span>
+          <span class="note-body">生成AIの力を借りて、情報整理からデザイン、コンテンツ作成まで一気に行いました。</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="final-message" id="thanks">
+      <h2>最後まで読んでくれてありがとうございます！</h2>
+      <p>よろしくお願いします！</p>
+    </div>
+  </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <script>
+    let confettiTriggered = false;
+
+    const backToTop = document.getElementById('backToTop');
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+
+      backToTop.classList.toggle('visible', scrollTop > 400);
+
+      if (scrollTop + clientHeight >= scrollHeight * 0.95 && !confettiTriggered) {
+        confettiTriggered = true;
+        const duration = 5000;
+        const animationEnd = Date.now() + duration;
+        const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+        setTimeout(() => {
+          confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
+        }, 300);
+
+        setTimeout(() => {
+          confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
+        }, 600);
+
+        const interval = setInterval(() => {
+          const timeLeft = animationEnd - Date.now();
+          if (timeLeft <= 0) return clearInterval(interval);
+
+          confetti({
+            particleCount: Math.floor(randomInRange(10, 30)),
+            angle: randomInRange(55, 125),
+            spread: randomInRange(50, 70),
+            origin: { x: randomInRange(0.1, 0.9), y: randomInRange(0.5, 0.6) },
+            colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']
+          });
+        }, 250);
+      }
+    });
+  </script>
+</body>
+</html>
