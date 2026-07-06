@@ -35,6 +35,9 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      font-size: 16px;
     }
 
     body {
@@ -476,12 +479,66 @@
       background: var(--color-primary-dark);
     }
 
-    /* レスポンシブ */
+    /* レスポンシブ（スマホ優先の可読性） */
     @media (max-width: 768px) {
+      html {
+        font-size: 18px;
+      }
+
+      body {
+        line-height: 1.85;
+      }
+
+      .header-inner {
+        padding: 0.85rem 1rem;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .header-name {
+        font-size: 1.05rem;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.35rem;
+      }
+
+      .nav-links a {
+        font-size: 0.88rem;
+        padding: 0.5rem 0.8rem;
+        min-height: 2.25rem;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .page {
+        padding: 1.25rem 1rem 3rem;
+      }
+
+      .section {
+        padding: 1.35rem 1.15rem;
+        margin-bottom: 1.25rem;
+        border-radius: 12px;
+      }
+
+      .section-title {
+        font-size: 1.35rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.45;
+      }
+
       .profile-hero {
         grid-template-columns: 1fr;
-        text-align: center;
         gap: 1.25rem;
+      }
+
+      .profile-hero > div:last-child {
+        text-align: left;
+        width: 100%;
       }
 
       .profile-photo-wrap {
@@ -490,41 +547,164 @@
       }
 
       .profile-img {
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
       }
 
       .profile-name {
-        font-size: 1.6rem;
+        font-size: 1.75rem;
+        line-height: 1.35;
+      }
+
+      .profile-ruby {
+        font-size: 1rem;
+      }
+
+      .profile-age {
+        font-size: 1rem;
       }
 
       .profile-meta li {
-        justify-content: center;
+        justify-content: flex-start;
+        text-align: left;
+        font-size: 1rem;
+        line-height: 1.75;
+        margin-bottom: 0.65rem;
       }
 
       .tags {
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 0.55rem;
       }
 
-      .section {
-        padding: 1.5rem;
+      .tag {
+        font-size: 0.88rem;
+        padding: 0.45rem 0.9rem;
+      }
+
+      .timeline {
+        margin-left: 0.25rem;
+        padding-left: 1.5rem;
+      }
+
+      .timeline-item h3 {
+        font-size: 1.08rem;
+        line-height: 1.45;
+      }
+
+      .timeline-item p {
+        font-size: 1rem;
+        line-height: 1.85;
+        color: var(--color-text);
+      }
+
+      .work-detail {
+        padding: 1.15rem;
+      }
+
+      .work-detail h3 {
+        font-size: 1.05rem;
+      }
+
+      .work-detail p {
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .work-channel {
+        font-size: 0.9rem;
+        padding: 0.45rem 0.85rem;
+      }
+
+      .feature-hero-img {
+        height: 200px;
+      }
+
+      .intro-text {
+        font-size: 1rem;
+        line-height: 1.85;
       }
 
       .info-grid,
       .hobby-grid {
         grid-template-columns: 1fr;
+        gap: 0.85rem;
       }
 
-      .feature-hero-img {
-        height: 180px;
+      .info-card {
+        padding: 1.15rem;
       }
 
-      .nav-links {
-        display: none;
+      .info-card h3 {
+        font-size: 1.05rem;
+      }
+
+      .info-card p {
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .hobby-card {
+        padding: 1.15rem;
+      }
+
+      .hobby-card h3 {
+        font-size: 1.08rem;
+      }
+
+      .hobby-card p {
+        font-size: 1rem;
+        line-height: 1.85;
+        color: var(--color-text);
+      }
+
+      .hobby-note {
+        font-size: 0.95rem;
+        line-height: 1.8;
+      }
+
+      .hobby-card img {
+        height: 160px;
+        margin-top: 1rem;
+      }
+
+      .final-message {
+        padding: 2.25rem 0.5rem;
+      }
+
+      .final-message h2 {
+        font-size: 1.35rem;
+        line-height: 1.5;
+      }
+
+      .final-message p {
+        font-size: 1.1rem;
+      }
+
+      .back-to-top {
+        width: 52px;
+        height: 52px;
+        right: 1rem;
+        bottom: max(1rem, env(safe-area-inset-bottom));
+      }
+
+      .back-to-top i {
+        font-size: 1.15rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      html {
+        font-size: 17px;
       }
 
       .header-inner {
         justify-content: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+        width: 100%;
       }
     }
   </style>
