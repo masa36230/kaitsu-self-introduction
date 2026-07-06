@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="海津真史の自己紹介ページ。GA technologies（RENOSY CRM）担当、経歴・趣味を紹介。">
+  <meta name="description" content="海津真史の自己紹介ページ。GA technologies（RENOSY CRM）担当、メール・LINEを活用したコミュニケーション設計、経歴・趣味を紹介。">
   <title>海津真史 | 自己紹介</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -349,6 +349,66 @@
       color: var(--color-text-muted);
     }
 
+    .hobby-card p + p {
+      margin-top: 0.5rem;
+    }
+
+    .hobby-note {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+
+    .work-detail {
+      margin-top: 1.25rem;
+      padding: 1.25rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(37, 99, 235, 0.02) 100%);
+      border-radius: var(--radius-sm);
+      border-left: 4px solid var(--color-primary);
+    }
+
+    .work-detail h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      color: var(--color-primary-dark);
+    }
+
+    .work-detail p {
+      margin: 0 0 0.65rem;
+      font-size: 0.95rem;
+      color: var(--color-text);
+    }
+
+    .work-detail p:last-child {
+      margin-bottom: 0;
+    }
+
+    .work-channels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .work-channel {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+    }
+
+    .work-channel i {
+      color: var(--color-primary);
+      font-size: 0.75rem;
+    }
+
     .hobby-card img {
       width: 100%;
       height: 140px;
@@ -485,10 +545,11 @@
           <p class="profile-age">1995年10月5日生（29歳）</p>
           <ul class="profile-meta">
             <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>東京都八王子市出身</span></li>
-            <li><i class="fas fa-briefcase" aria-hidden="true"></i><span>現在: GA technologies（RENOSYブランド CRM領域担当）</span></li>
+            <li><i class="fas fa-briefcase" aria-hidden="true"></i><span>現在: GA technologies（不動産業界・RENOSY CRM領域担当）</span></li>
           </ul>
           <div class="tags">
             <span class="tag">CRM</span>
+            <span class="tag">メール・LINE</span>
             <span class="tag">マーケティング</span>
             <span class="tag">データ分析</span>
           </div>
@@ -514,7 +575,16 @@
         </div>
         <div class="timeline-item">
           <h3>現在: GA technologies</h3>
-          <p>不動産投資サービスRENOSY運営。「不動産での資産形成を、あたりまえにする。」を事業ビジョンとして掲げるAI不動産投資サービスで、顧客体験をより良くするため日々取り組んでいます🔥</p>
+          <p>不動産投資サービスRENOSYを運営。「不動産での資産形成を、あたりまえにする。」を事業ビジョンに掲げるAI不動産投資サービスで、顧客体験をより良くするため日々取り組んでいます🔥</p>
+          <div class="work-detail">
+            <h3>いまのお仕事</h3>
+            <p>不動産業界でCRM領域を担当しています。メールやLINEなどを活用しながら、お客様とのコミュニケーション設計や、マーケティング施策の企画・分析に取り組んでいます。</p>
+            <div class="work-channels">
+              <span class="work-channel"><i class="fas fa-envelope" aria-hidden="true"></i>メール</span>
+              <span class="work-channel"><i class="fab fa-line" aria-hidden="true"></i>LINE</span>
+              <span class="work-channel"><i class="fas fa-chart-line" aria-hidden="true"></i>施策分析</span>
+            </div>
+          </div>
           <img src="https://page.genspark.site/v1/base64_upload/e35d1715de69bbd46ab29b734e03f05e" alt="GA technologies 名刺" class="business-card-img">
         </div>
       </div>
@@ -546,15 +616,16 @@
             <span class="emoji" aria-hidden="true">💪</span>
             <h3>筋トレ</h3>
           </div>
-          <p>週4日ほどジムに通ってゆるく続けてます。</p>
+          <p>週4日くらいジムに通っています！無理なく続けられるペースで、習慣にしています。</p>
           <img src="https://t.pimg.jp/062/752/673/1/62752673.jpg" alt="筋トレイラスト" loading="lazy">
         </div>
         <div class="hobby-card">
           <div class="hobby-header">
             <span class="emoji" aria-hidden="true">🎵</span>
-            <h3>最近ハマったもの</h3>
+            <h3>HANA</h3>
           </div>
-          <p>HANAという音楽グループで、朝4時まで関連番組を見るくらいにはハマりました。</p>
+          <p>最近ハマっている音楽グループです。結成前のオーディション番組から追いかけていて、関連番組は朝4時まで見るほど熱中しました。</p>
+          <p class="hobby-note">ライブに行きたくて申し込み続けているのですが…今のところ全部落選中です 😭</p>
           <img src="https://page.genspark.site/v1/base64_upload/64673d50fb431c7fb82cd2eadbb6dfcf" alt="HANAグループ" loading="lazy">
         </div>
         <div class="hobby-card">
@@ -562,7 +633,7 @@
             <span class="emoji" aria-hidden="true">📚</span>
             <h3>漫画・アニメ</h3>
           </div>
-          <p>最近は「推しの子」がとても良かったです。</p>
+          <p>漫画・アニメも好きです。最近は「推しの子」がとても良かったです。</p>
           <img src="https://contents.oricon.co.jp/upimg/news/2253000/2252806/20221013_000418_p_o_32707851.jpg" alt="推しの子アニメイメージ" loading="lazy">
         </div>
         <div class="hobby-card">
