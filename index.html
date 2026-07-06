@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     :root {
       --color-primary: #2563eb;
@@ -156,6 +155,15 @@
       font-weight: 700;
       margin: 0 0 0.35rem;
       letter-spacing: 0.02em;
+    }
+
+    .profile-ruby {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      margin-top: 0.2rem;
+      letter-spacing: 0.08em;
     }
 
     .profile-age {
@@ -541,8 +549,8 @@
           <img src="https://page.genspark.site/v1/base64_upload/422609cfccf3a2c444ab4af293cf7885" alt="プロフィール写真" class="profile-img" width="180" height="180">
         </div>
         <div>
-          <h1 class="profile-name">海津真史</h1>
-          <p class="profile-age">1995年10月5日生（29歳）</p>
+          <h1 class="profile-name">海津真史<span class="profile-ruby">（かいつ まさふみ）</span></h1>
+          <p class="profile-age" id="profileAge">1995年10月5日生</p>
           <ul class="profile-meta">
             <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>東京都八王子市出身</span></li>
             <li><i class="fas fa-briefcase" aria-hidden="true"></i><span>現在: GA technologies（不動産業界・RENOSY CRM領域担当）</span></li>
@@ -577,8 +585,8 @@
           <h3>現在: GA technologies</h3>
           <p>不動産投資サービスRENOSYを運営。「不動産での資産形成を、あたりまえにする。」を事業ビジョンに掲げるAI不動産投資サービスで、顧客体験をより良くするため日々取り組んでいます🔥</p>
           <div class="work-detail">
-            <h3>いまのお仕事</h3>
-            <p>不動産業界でCRM領域を担当しています。メールやLINEなどを活用しながら、お客様とのコミュニケーション設計や、マーケティング施策の企画・分析に取り組んでいます。</p>
+            <h3>いまの仕事</h3>
+            <p>不動産業界でCRM領域を担当。メールやLINEを使って、コミュニケーション設計やマーケ施策の企画・分析をしてる。</p>
             <div class="work-channels">
               <span class="work-channel"><i class="fas fa-envelope" aria-hidden="true"></i>メール</span>
               <span class="work-channel"><i class="fab fa-line" aria-hidden="true"></i>LINE</span>
@@ -597,12 +605,12 @@
       <p class="intro-text">東京都の八王子市で育ちました！自然豊かな場所で、子供の頃はザリガニ釣りや虫取りをして遊んでいました 🦐</p>
       <div class="info-grid">
         <div class="info-card">
-          <h3>🗻 高尾山の魅力</h3>
-          <p>標高599mの高尾山は年間約260万人が訪れる人気スポット。ミシュラン・グリーンガイドで三つ星を獲得しており、豊かな自然と美しい景観が楽しめます。</p>
+          <h3>🗻 高尾山</h3>
+          <p>育った場所からすぐ近く。都心からでも行きやすくて、気分転換に登ることもある。</p>
         </div>
         <div class="info-card">
-          <h3>🌳 自然の宝庫</h3>
-          <p>八王子は都心から約40kmに位置しながら、豊かな自然環境が魅力。多摩丘陵や浅川が流れ、四季折々の自然を身近に感じられます。</p>
+          <h3>🌳 自然のまわり</h3>
+          <p>山や川があって、子どもの頃はザリガニ釣りや虫取りが日常だった感じの街。</p>
         </div>
       </div>
     </section>
@@ -658,7 +666,22 @@
   </button>
 
   <script>
-    let confettiTriggered = false;
+    const BIRTH_DATE = new Date(1995, 9, 5);
+
+    function calcAge(birthDate, today = new Date()) {
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const hasHadBirthday =
+        today.getMonth() > birthDate.getMonth() ||
+        (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+      if (!hasHadBirthday) age -= 1;
+      return age;
+    }
+
+    const profileAge = document.getElementById('profileAge');
+    if (profileAge) {
+      const age = calcAge(BIRTH_DATE);
+      profileAge.textContent = `1995年10月5日生（${age}歳）`;
+    }
 
     const backToTop = document.getElementById('backToTop');
     backToTop.addEventListener('click', () => {
@@ -667,40 +690,7 @@
 
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = document.documentElement.clientHeight;
-
       backToTop.classList.toggle('visible', scrollTop > 400);
-
-      if (scrollTop + clientHeight >= scrollHeight * 0.95 && !confettiTriggered) {
-        confettiTriggered = true;
-        const duration = 5000;
-        const animationEnd = Date.now() + duration;
-        const randomInRange = (min, max) => Math.random() * (max - min) + min;
-
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
-        setTimeout(() => {
-          confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } });
-        }, 300);
-
-        setTimeout(() => {
-          confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } });
-        }, 600);
-
-        const interval = setInterval(() => {
-          const timeLeft = animationEnd - Date.now();
-          if (timeLeft <= 0) return clearInterval(interval);
-
-          confetti({
-            particleCount: Math.floor(randomInRange(10, 30)),
-            angle: randomInRange(55, 125),
-            spread: randomInRange(50, 70),
-            origin: { x: randomInRange(0.1, 0.9), y: randomInRange(0.5, 0.6) },
-            colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']
-          });
-        }, 250);
-      }
     });
   </script>
 </body>
