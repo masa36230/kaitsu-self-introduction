@@ -264,11 +264,20 @@
       font-size: 0.95rem;
     }
 
+    .business-card-stack {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
     .business-card-img {
+      display: block;
+      width: 100%;
       max-width: 100%;
+      height: auto;
       border-radius: var(--radius-sm);
       box-shadow: var(--shadow-md);
-      margin-top: 1rem;
+      background: #fff;
     }
 
     /* 地元セクション */
@@ -598,6 +607,13 @@
         color: var(--color-text);
       }
 
+      /* 名刺画像：タイムライン左インデント分を相殺して横幅を確保 */
+      .business-card-stack {
+        width: calc(100% + 1.75rem);
+        max-width: calc(100% + 1.75rem);
+        margin-left: -1.75rem;
+      }
+
       .work-detail {
         padding: 1.15rem;
       }
@@ -773,7 +789,10 @@
               <span class="work-channel"><i class="fas fa-chart-line" aria-hidden="true"></i>施策分析</span>
             </div>
           </div>
-          <img src="https://page.genspark.site/v1/base64_upload/e35d1715de69bbd46ab29b734e03f05e" alt="GA technologies 名刺" class="business-card-img">
+          <div class="business-card-stack">
+            <img src="assets/meishi_omote.png" alt="GA technologies 名刺（表）" class="business-card-img" width="859" height="519" loading="lazy">
+            <img src="assets/meishi_ura.png" alt="GA technologies 名刺（裏・RENOSY）" class="business-card-img" width="839" height="500" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
